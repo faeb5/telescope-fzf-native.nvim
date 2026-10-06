@@ -1,21 +1,8 @@
 CFLAGS += -Wall -fpic -std=gnu99
 
-ifeq ($(OS),Windows_NT)
-    CC = gcc
-    TARGET := libfzf.dll
-ifeq (,$(findstring $(MSYSTEM),MSYS UCRT64 CLANG64 CLANGARM64 CLANG32 MINGW64 MINGW32))
-	# On Windows, but NOT msys/msys2
-    MKD = cmd /C mkdir
-    RM = cmd /C rmdir /Q /S
-else
-    MKD = mkdir -p
-    RM = rm -rf
-endif
-else
-    MKD = mkdir -p
-    RM = rm -rf
-    TARGET := libfzf.so
-endif
+MKD = mkdir -p
+RM = rm -rf
+TARGET = libfzf.so
 
 all: build/$(TARGET)
 
